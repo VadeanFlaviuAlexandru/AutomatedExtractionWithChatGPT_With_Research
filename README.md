@@ -17,7 +17,7 @@
 <p>🌟<b>Research pentru a identifica daca putem trimite date tip text catre Chat GPT si acesta sa extraga informatii despre topic, sentiment, sa faca un rezumat al textului:</b></p>
 <p>short answer: Dap!</p>
 <p>long answer: Acest subiect este unul comun si plin de articole/exemple/tutoriale. Folosind 'prompt-template' oferit de LangChain, putem sa-i spun direct la LLM cum sa raspunda. O problema este ca trebuie sa fim foarte expliciti cu template-ul pentru a obtine rezultate constante.(+exista un parametru numit 'temperature' care poate fi intre 0 si 1. Cu cat este mai aproape de 0, cu atat o sa aiba acelasi raspuns la fiecare raspuns generat. Daca ii mai aproape de 1, o sa spuna transmita acelasi mesaj, dar diferit cu fiecare raspuns generat). Un template pentru partea de PDF se afla la finalul paginii.</p>
-<p>🧠Logica aplicatiei pentru PDF(folosind <a href="https://www.langchain.com/">Langchain)</a>🧠</p><img src="/db.png" alt="db.png" />
+<p>🧠Logica aplicatiei pentru PDF(folosind <a href="https://www.langchain.com/">Langchain)</a>🧠</p>![DB](https://github.com/VadeanFlaviuAlexandru/AutomatedExtractionWithChatGPT/assets/103831098/18326ed6-17db-42e0-ba48-3472a83649a8)
 <ol>
   <li>Introducem PDF-u</li>
   <li>PDF-u se desparte in bucati de text (chunks)</li>
@@ -31,7 +31,7 @@
 <p>🌟<b>Research pentru a identifica daca putem trimite date numerice catre Chat GPT si acesta sa extraga informatii si sa faca predictii:</b> </p>
 <p>short answer: Dap! Foarte similar cu extragerea din PDF, intr-un fel..</p>
 <p>long answer: Apare o problema cand oferim unui LLM fisiere cu tabele (...sau tabeluri?): nu poate sa le citeasca 🤷. Aici apare conceptul de 'agent'. Also, exista exemple/tutoriale pentru fisiere cu extensia .CSV, dar nu prea exista pentru .XLS/XLSX. In demo-u nostru, convertim fisierele .XLS/XLSX in .CSV, <a href="https://python.langchain.com/docs/modules/agents/how_to/custom_mrkl_agent"> dar este nevoie sa facem un custom agent aici pentru xls si pentru custom output: poate custom mrkl agent, poate create_pandas_dataframe_agent, needs more research aici ca m-am lovit de limitari</a> (<a href="https://blog.futuresmart.ai/langchains-pandas-csv-agents-revolutionizing-data-querying-using-openai-llms">Sunt limitari btw la agenti,vezi 'Comparison of pandas and CSV agents with traditional query languages'</a>). Aici mai este nevoie de research pentru: a vedea daca se poate face template pentru output, pentru a vedea cum ii mai eficient: un agent.run pe intrebare (dar ne lovim de limitari aici, something abount 3 requests/min), sau un singur agent.run pentru toate intrebarile.</p>
-<p>🧠Logica aplicatiei pentru XLS</a>🧠</p><img src="/db2.png" alt="db2.png" />
+<p>🧠Logica aplicatiei pentru XLS</a>🧠</p> ![db2](https://github.com/VadeanFlaviuAlexandru/AutomatedExtractionWithChatGPT/assets/103831098/a73640c4-7e95-494e-b7b0-384a0a94b453)
 <ol>
   <li>Introducem fisierul</li>
   <li>'Agentul' nostru se gandeste (folosind un Large Language Model (precum ChatGPT))</li>
