@@ -26,21 +26,22 @@
   <li>Se introduce prompt-ul predefinit, care devine la randul lui un embedding si se cauta prin knowledge base printr-o cautare semantica.</li>
   <li>Primim raspuns!</li>
 </ol>
-<p>💖💖💖Foarte important: costa 0.03$ pentru a face input (embedding) si output(LLM). Pentru ca totul este Open-Source (kinda), putem folosit alt model de embedding! Putem folosi unul de la <a href="https://huggingface.co/">HuggingFace<a>💖💖💖 pe gratis, dar o sa dureze mai mult in comparatie cu cel de la OpenAI (folosind unul de la HuggingFace, de exemplu 'hkunlp/instructor-xl', dureaza 15s pentru un PDF cu o pagina full). Dar pentru output? pai, ne <a href="https://medium.com/@jasonisveryhappy/document-qa-using-large-language-models-llms-933b73c9df8f">lovim de limitari</a> daca folosim un LLM gratis de la HugginFace... something something 'input greater than 1084 tokens', de exemplu. Poate putem folosi propriul nostru LLM 🤔🤔🤔 <a href="https://flowiseai.com/">Needs-</a> <a href="https://flowiseai.com/">_more</a><a href="https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/">-research</a></p>
+<p>💖💖💖Foarte important: costa 0.03$ pentru a face input (embedding) si output(LLM). Pentru ca totul este Open-Source (kinda), putem folosit alt model de embedding! Putem folosi unul de la <a href="https://huggingface.co/">HuggingFace</a>💖💖💖 pe gratis, dar o sa dureze mai mult in comparatie cu cel de la OpenAI (folosind unul de la HuggingFace, de exemplu 'hkunlp/instructor-xl', dureaza 15s pentru un PDF cu o pagina full). Dar pentru output? pai, ne <a href="https://medium.com/@jasonisveryhappy/document-qa-using-large-language-models-llms-933b73c9df8f">lovim de limitari</a> daca folosim un LLM gratis de la HugginFace... something something 'input greater than 1084 tokens', de exemplu. Poate putem folosi propriul nostru LLM 🤔🤔🤔 <a href="https://flowiseai.com/">Needs-</a> <a href="https://flowiseai.com/">_more</a><a href="https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/">-research</a></p>
+
 <p>🌟<b>Research pentru a identifica daca putem trimite date numerice catre Chat GPT si acesta sa extraga informatii si sa faca predictii:</b> </p>
 <p>short answer: Dap! Foarte similar cu extragerea din PDF, intr-un fel..</p>
-<p>long answer: Apare o problema cand oferim unui LLM fisiere cu tabele (...sau tabeluri?): nu poate sa le citeasca 🤷. Aici apare conceptul de 'agent'. Also, exista exemple/tutoriale pentru fisiere cu extensia .CSV, dar nu prea exista pentru .XLS/XLSX. In demo-u nostru, convertim fisierele .XLS/XLSX in .CSV, dar needs more research here if possible sa nu ne complicam asa. Also again, aici nu avem template pentru output, deoarece folosim agent. Needs more research aici pentru a vedea cum se face.</p>
+<p>long answer: Apare o problema cand oferim unui LLM fisiere cu tabele (...sau tabeluri?): nu poate sa le citeasca 🤷. Aici apare conceptul de 'agent'. Also, exista exemple/tutoriale pentru fisiere cu extensia .CSV, dar nu prea exista pentru .XLS/XLSX. In demo-u nostru, convertim fisierele .XLS/XLSX in .CSV, <a href="https://python.langchain.com/docs/modules/agents/how_to/custom_mrkl_agent"> dar este nevoie sa facem un custom agent aici pentru xls si pentru custom output</a> (<a href="https://blog.futuresmart.ai/langchains-pandas-csv-agents-revolutionizing-data-querying-using-openai-llms">Sunt limitari btw la agenti,vezi 'Comparison of pandas and CSV agents with traditional query languages'</a>). Aici mai este nevoide de research pentru: a vedea daca se poate face tempalte pentru outpot, pentru a vedea cum ii mai eficient: un agent.run pe intrebare, sau un singur agent.run pentru toate intrebarile.</p>
 <p>🧠Logica aplicatiei pentru XLS</a>🧠</p><img src="/db2.png" alt="db2.png" />
 <ol>
   <li>Introducem fisierul</li>
   <li>'Agentul' nostru se gandeste (folosind un Large Language Model (precum ChatGPT))</li>
-  <p>🤔 poate putem folosi mai multi agenti pentru fiecare intrebare? needs more research here</p>
   <li>Ajunge la o concluzie: ce tool este mai bun pentru a executa prompt-ul</li>
   <li>Primim un output</li>
   <li>Folosind un LLM, obtinem un raspuns</li>
 </ol>
 <br><hr>
 <p>📚📚Research for who wants to read📚📚</p>
+<p>📒 articol: cum functioneaza un agent si limitarile lui: <a href="https://blog.futuresmart.ai/langchains-pandas-csv-agents-revolutionizing-data-querying-using-openai-llms">link</a> </p>
 <p>📒 articol: ce sunt (si cum ajuta) pluginurile pentru ChatGPT: <a href="https://www.gptechblog.com/understanding-chatgpt-plugins/">link</a> </p>
 <p>📗 articol: tutorial introductiv despre cum sa folosesti ChatGPT sa pui intrebari unui PDF introdus: <a href="https://nanonets.com/blog/chat-with-pdfs-using-chatgpt-and-openai-gpt-api/">link</a> </p>
 <p>📕 articol: tutorial introductiv despre cum sa folosesti ChatGPT sa pui intrebari unui CSV introdus: <a href="https://betterprogramming.pub/build-a-chatbot-on-your-csv-data-with-langchain-and-openai-ed121f85f0cd">link</a></p>
