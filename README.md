@@ -1,4 +1,4 @@
-"Un proiect solo la care am fost asignat în ultimele zile ale perioadei mele de stagiu la <a href="https://www.cicadatech.eu/">Cicada Technologies</a>. Proiectul a durat aproximativ 8 zile lucratoare si a implicat cercetarea inteligentei artificiale, modelelor de limbaj extinse (large languange models) si implementarea acestora. Implementarea si interfata au fost create folosind Python si Streamlit."
+Un proiect solo la care am fost asignat în ultimele zile ale perioadei mele de stagiu la <a href="https://www.cicadatech.eu/">Cicada Technologies</a>. Proiectul a durat aproximativ 8 zile lucratoare si a implicat cercetarea inteligentei artificiale, modelelor de limbaj extinse (large languange models) si implementarea acestora. Implementarea si interfata au fost create folosind Python si Streamlit.
 <hr>
 Cercetarea notata:
 <hr>
