@@ -1,3 +1,7 @@
+"Un proiect solo la care am fost asignat în ultimele zile ale perioadei mele de stagiu la <a href="https://www.cicadatech.eu/">Cicada Technologies</a>. Proiectul a durat aproximativ 8 zile lucratoare si a implicat cercetarea inteligentei artificiale, modelelor de limbaj extinse (large languange models) si implementarea acestora. Implementarea si interfata au fost create folosind Python si Streamlit."
+<hr>
+Cercetarea notata:
+<hr>
 <h1>✨Research Integrare ChatGPT✨</h1>
 
 <p>"Ce este ChatGPT? Pe scurt, ChatGPT este un robot software cu care poți dialoga, căruia îi poți pune întrebări și care-ți poate răspunde într-un limbaj ușor de înțeles. Sau, dacă vrei să te amuzi un pic, îți poate răspunde în stilul oricărei personalități cunoscute la ale cărei scrieri are acces." - PresOne </p>
