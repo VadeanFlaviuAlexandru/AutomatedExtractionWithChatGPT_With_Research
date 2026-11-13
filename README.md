@@ -1,50 +1,82 @@
 Un proiect solo la care am fost asignat în ultimele zile ale perioadei mele de stagiu la <a href="https://www.cicadatech.eu/">Cicada Technologies</a>. Proiectul a durat aproximativ 8 zile lucratoare si a implicat cercetarea inteligentei artificiale, modelelor de limbaj extinse (large languange models) si implementarea acestora. Implementarea si interfata au fost create folosind Python si Streamlit.
 <hr>
-Cercetarea notata:
 <hr>
-<h1>✨Research Integrare ChatGPT✨</h1>
+Research – Integrarea ChatGPT
+<hr>
+<hr>
 
-<p>"Ce este ChatGPT? Pe scurt, ChatGPT este un robot software cu care poți dialoga, căruia îi poți pune întrebări și care-ți poate răspunde într-un limbaj ușor de înțeles. Sau, dacă vrei să te amuzi un pic, îți poate răspunde în stilul oricărei personalități cunoscute la ale cărei scrieri are acces." - PresOne </p>
+## 1. Obiectiv
 
-<p>Principalul obiectiv este crearea unui program (preferabil cu python) care sa foloseasca ChatGPT pentru urmatoarele:</p>
+Scopul acestui research este de a evalua posibilitatea integrării ChatGPT într-o aplicație Python, pentru procesarea și analizarea a două tipuri de date:
 
-<ol>
-  <li>Research pentru a vedea cum putem sa ne integram cu Chat GPT</li>
-	<li>Research pentru a identifica daca putem trimite date tip text catre Chat GPT si acesta sa extraga informatii despre topic, sentiment, sa faca un rezumat al textului.</li>
-	<li>Research pentru a identifica daca putem trimite date numerice catre Chat GPT si acesta sa extraga informatii si sa faca predictii</li>
-</ol>
+- **Date textuale:** identificarea subiectului (topic), analiza sentimentului și generarea de rezumate.
+- **Date numerice:** extragerea informațiilor relevante, identificarea tendințelor și realizarea de predicții.
 
-<p>🌟<b>Research pentru a vedea cum pute sa ne integram cu Chat GPT:</b></p>
-<p>short answer: Putem sa obtinem un API key daca mergem in contul nostru de OpenAI si impreuna cu <a href="https://blog.langchain.dev/">LangChain</a> putem construi aplicatii in care sa folosim LargeLanguageModels (LLM). </p>
-<p>🤔: Fiecare cont nou `fresh` pentru OpenAI o sa primeasca 5$ credit gratis (pentru API calls). Dupa 3 luni, acest credit expira (chiar daca a fost folosit sau nu). Avem nevoie de credit nou? Trebuie sa platim. Exista si posibilitatea de a pune o limita, deci optiunile sunt accesibile. Sunt <a href="https://platform.openai.com/docs/models/gpt-3-5">multe optiuni</a> si cand vorbim de LLM. Demo-u ii facut cu 'gpt-3.5-turbo' si fiecare call de input / output (explicat mai in jos la 'logica aplicatiei') o sa coste 0.03$</p>
+## 2. Integrarea cu ChatGPT
 
-<p>🌟<b>Research pentru a identifica daca putem trimite date tip text catre Chat GPT si acesta sa extraga informatii despre topic, sentiment, sa faca un rezumat al textului:</b></p>
-<p>short answer: Dap!</p>
-<p>long answer: Acest subiect este unul comun si plin de articole/exemple/tutoriale. Folosind 'prompt-template' oferit de LangChain, putem sa-i spun direct la LLM cum sa raspunda. O problema este ca trebuie sa fim foarte expliciti cu template-ul pentru a obtine rezultate constante.(+exista un parametru numit 'temperature' care poate fi intre 0 si 1. Cu cat este mai aproape de 0, cu atat o sa aiba acelasi raspuns la fiecare raspuns generat. Daca ii mai aproape de 1, o sa spuna transmita acelasi mesaj, dar diferit cu fiecare raspuns generat). Un template pentru partea de PDF se afla la finalul paginii.</p>
-<p>🧠Logica aplicatiei pentru PDF(folosind <a href="https://www.langchain.com/">Langchain)</a>🧠</p>
+Integrarea se poate realiza prin intermediul API-ului OpenAI, folosind o cheie API generată din contul OpenAI.
 
-<ol>
-  <li>Introducem PDF-u</li>
-  <li>PDF-u se desparte in bucati de text (chunks)</li>
-  <li>Aceste bucati de text devin `siruri de 0 si 1` pentru a fi citite (embeddings)</li>
-  <li>Aceste embeddings se salveaza intr-un knowledge base (un DataBase)</li>
-  <li>Se introduce prompt-ul predefinit, care devine la randul lui un embedding si se cauta prin knowledge base printr-o cautare semantica.</li>
-  <li>Primim raspuns!</li>
-</ol>
-<p>💖💖💖Foarte important: costa 0.03$ pentru a face input (embedding) si output(LLM). Pentru ca totul este Open-Source (kinda), putem folosit alt model de embedding! Putem folosi unul de la <a href="https://huggingface.co/">HuggingFace</a>💖💖💖 pe gratis, dar o sa dureze mai mult in comparatie cu cel de la OpenAI (folosind unul de la HuggingFace, de exemplu 'hkunlp/instructor-xl', dureaza 15s pentru un PDF cu o pagina full). Dar pentru output? pai, ne <a href="https://medium.com/@jasonisveryhappy/document-qa-using-large-language-models-llms-933b73c9df8f">lovim de limitari</a> daca folosim un LLM gratis de la HugginFace... something something 'input greater than 1084 tokens', de exemplu. Poate putem folosi propriul nostru LLM 🤔🤔🤔 <a href="https://flowiseai.com/">Needs-</a> <a href="https://flowiseai.com/">_more</a><a href="https://blog.streamlit.io/build-a-chatbot-with-custom-data-sources-powered-by-llamaindex/">-research</a></p>
+Pentru dezvoltarea aplicației putem utiliza [LangChain](https://www.langchain.com/), un framework care facilitează integrarea modelelor lingvistice (LLM) și gestionarea interacțiunilor cu acestea.
 
-<p>🌟<b>Research pentru a identifica daca putem trimite date numerice catre Chat GPT si acesta sa extraga informatii si sa faca predictii:</b> </p>
-<p>short answer: Dap! Foarte similar cu extragerea din PDF, intr-un fel..</p>
-<p>long answer: Apare o problema cand oferim unui LLM fisiere cu tabele (...sau tabeluri?): nu poate sa le citeasca 🤷. Aici apare conceptul de 'agent'. Also, exista exemple/tutoriale pentru fisiere cu extensia .CSV, dar nu prea exista pentru .XLS/XLSX. In demo-u nostru, convertim fisierele .XLS/XLSX in .CSV, <a href="https://python.langchain.com/docs/modules/agents/how_to/custom_mrkl_agent"> dar este nevoie sa facem un custom agent aici pentru xls si pentru custom output: poate custom mrkl agent, poate create_pandas_dataframe_agent, needs more research aici ca m-am lovit de limitari</a> (<a href="https://blog.futuresmart.ai/langchains-pandas-csv-agents-revolutionizing-data-querying-using-openai-llms">Sunt limitari btw la agenti,vezi 'Comparison of pandas and CSV agents with traditional query languages'</a>). Aici mai este nevoie de research pentru: a vedea daca se poate face template pentru output, pentru a vedea cum ii mai eficient: un agent.run pe intrebare (dar ne lovim de limitari aici, something abount 3 requests/min), sau un singur agent.run pentru toate intrebarile.</p>
-<p>🧠Logica aplicatiei pentru XLS</a>🧠</p>
+Costurile depind de modelul ales și de volumul de date procesat. API-ul permite configurarea unor limite de utilizare și buget, astfel încât costurile să poată fi controlate.
 
-<ol>
-  <li>Introducem fisierul</li>
-  <li>'Agentul' nostru se gandeste (folosind un Large Language Model (precum ChatGPT))</li>
-  <li>Ajunge la o concluzie: ce tool este mai bun pentru a executa prompt-ul</li>
-  <li>Primim un output</li>
-  <li>Folosind un LLM, obtinem un raspuns</li>
-</ol>
+## 3. Procesarea datelor textuale
+
+**Concluzie: Este posibil.**
+
+ChatGPT poate analiza texte pentru a identifica subiecte, determina sentimentul și genera rezumate. Prin intermediul prompturilor predefinite (Prompt Templates), putem controla formatul și tipul răspunsurilor.
+
+Pentru rezultate consistente, prompturile trebuie formulate cât mai clar. De asemenea, parametrul `temperature` influențează gradul de variație al răspunsurilor: valorile apropiate de 0 oferă rezultate mai predictibile.
+
+### Exemplu: procesarea unui PDF
+
+Folosind LangChain, fluxul de procesare poate fi următorul:
+
+1. Încărcarea documentului PDF.
+2. Împărțirea documentului în fragmente de text (chunks).
+3. Transformarea fragmentelor în reprezentări numerice (embeddings).
+4. Stocarea acestora într-o bază de date vectorială.
+5. Căutarea semantică a informațiilor relevante pentru întrebarea primită.
+6. Transmiterea informațiilor către LLM și generarea răspunsului.
+
+**Optimizarea costurilor:** Pentru generarea embeddings pot fi utilizate și modele open-source disponibile prin [Hugging Face](https://huggingface.co/). Acestea pot reduce costurile, însă pot necesita mai multe resurse și timp de procesare. Pentru generarea răspunsurilor rămâne necesar un LLM, ceea ce implică evaluarea alternativelor disponibile și a limitărilor acestora.
+
+## 4. Procesarea datelor numerice
+
+**Concluzie: Este posibil, dar necesită o abordare diferită.**
+
+Pentru analiza fișierelor cu date numerice (Excel/CSV), putem utiliza agenți LangChain conectați la un LLM și la instrumente de analiză precum Pandas.
+
+În cazul fișierelor XLS/XLSX, o soluție posibilă este conversia acestora în CSV sau utilizarea unui agent personalizat care să poată interacționa direct cu DataFrame-uri Pandas.
+
+### Exemplu: procesarea unui fișier Excel
+
+1. Încărcarea fișierului XLS/XLSX.
+2. Citirea și pregătirea datelor cu ajutorul Pandas.
+3. Transmiterea întrebării către agent.
+4. Selectarea instrumentelor necesare pentru analiză.
+5. Procesarea datelor și generarea răspunsului folosind LLM.
+
+Această abordare permite extragerea informațiilor și identificarea tendințelor. Pentru predicții numerice propriu-zise, este recomandată și integrarea unor modele statistice sau de machine learning, ChatGPT putând interpreta și explica rezultatele.
+
+## 5. Aspecte care necesită research suplimentar
+
+Pentru finalizarea unei soluții funcționale, mai trebuie investigate următoarele:
+
+- Identificarea celei mai eficiente soluții pentru procesarea fișierelor Excel.
+- Compararea agenților LangChain disponibili (Pandas Agent, CSV Agent și agenți personalizați).
+- Definirea unui format standardizat pentru răspunsuri.
+- Optimizarea numărului de apeluri API și a costurilor.
+- Evaluarea modelelor open-source ca alternative la API-ul OpenAI.
+- Identificarea celei mai bune abordări pentru realizarea predicțiilor numerice.
+
+## 6. Concluzie
+
+Integrarea ChatGPT într-o aplicație Python este fezabilă atât pentru procesarea datelor textuale, cât și pentru analiza datelor numerice.
+
+Pentru documente PDF, soluția poate fi construită folosind LangChain, embeddings și căutare semantică. Pentru fișiere Excel, putem utiliza agenți conectați la Pandas, care permit interpretarea și analiza datelor.
+
+Următorul pas este dezvoltarea unui prototip care să testeze ambele scenarii și să evalueze acuratețea rezultatelor, timpul de procesare și costurile de utilizare.
 <br><hr>
 <p>📚📚Research for who wants to read📚📚</p>
 <p>📒 articol: cum functioneaza un agent si limitarile lui: <a href="https://blog.futuresmart.ai/langchains-pandas-csv-agents-revolutionizing-data-querying-using-openai-llms">link</a> </p>
